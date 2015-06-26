@@ -6,6 +6,9 @@ Mongo Express Angular Node - TDD - with Karma, Protractor, & Jasmine
 
   `npm install`
 
+######Requirements:
+  Node, Bower
+
 ###Start server:
   `node server.js`
 

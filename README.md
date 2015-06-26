@@ -23,6 +23,7 @@ Mongo Express Angular Node - TDD - with Karma, Protractor, & Jasmine
 
 #####Directory Tree
 (doesn't have all the files listed)
+```
 .
 ├── angular
 │   ├── bower_components
@@ -73,3 +74,4 @@ Mongo Express Angular Node - TDD - with Karma, Protractor, & Jasmine
     ├── protractor-conf.js
     └── unit
        ├── directiveSpec.js
+```

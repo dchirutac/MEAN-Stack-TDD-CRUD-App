@@ -8,4 +8,4 @@ Mongo Express Angular Node - TDD - with Karma, Protractor, & Jasmine
   `node server.js`
 
 #####Note: 
-  to not error with Protractor add one widget prior to running.
+  To not error with Protractor add one widget prior to running.

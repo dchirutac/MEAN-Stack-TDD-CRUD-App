@@ -7,5 +7,14 @@ Mongo Express Angular Node - TDD - with Karma, Protractor, & Jasmine
 ###Start server: 
   `node server.js`
 
-#####Note: 
+####Testing
+#####Karma:
+  `npm test`
+  
+#####Protractor:
+  `npm run protractor`
+  or
+  `protractor test/protractor-conf.js`
+
+######Note: 
   To not error with Protractor add one widget prior to running.

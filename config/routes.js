@@ -25,43 +25,43 @@
     // Get all widgets
     app.get('/api/widgets', function(req, res){
       WidgetsController.index(req, res, function(widgets){
-        console.log('routes.js get all widgets, widgets:', widgets);
+        // console.log('routes.js get all widgets, widgets:', widgets);
         res.send(widgets);
       });
     });
 
     // Create widget
     app.post('/api/widgets', function(req, res){
-      console.log('\n2 config/routes.js -create- post /api/widgets req.body\n', req.body);
+      // console.log('\n2 config/routes.js -create- post /api/widgets req.body\n', req.body);
       WidgetsController.create(req, res, function(widget){
-        console.log('\n8 config/routes.js -create- post /api/widgets callback() - widget\n', widget);
+        // console.log('\n8 config/routes.js -create- post /api/widgets callback() - widget\n', widget);
         res.json(widget);
       });
     });
 
     // Find one widget
     app.get('/api/widgets/:id', function(req, res){
-      console.log('\n2 config/routes.js -findOne- get /api/widgets/:id req.params:\n', req.params);
+      // console.log('\n2 config/routes.js -findOne- get /api/widgets/:id req.params:\n', req.params);
       WidgetsController.show(req, res, function(widget){
-        console.log('\n5 config/routes.js -findOne- get /api/widgets/:id callback() - widget\n', widget);
+        // console.log('\n5 config/routes.js -findOne- get /api/widgets/:id callback() - widget\n', widget);
         res.json(widget);
       });
     });
 
     // Update widget
     app.post('/api/widgets/:id', function(req, res){
-      console.log('\n2 config/routes.js - put /api/widgets/:id req.body\n', req.body);
+      // console.log('\n2 config/routes.js - put /api/widgets/:id req.body\n', req.body);
       WidgetsController.update(req, res, function(widget){
-        console.log('\n6 config/routes.js - put /api/widgets/:id callback() - widget\n', widget);
+        // console.log('\n6 config/routes.js - put /api/widgets/:id callback() - widget\n', widget);
         res.json(widget);
       });
     });
 
     // Destroy widget
     app.delete('/api/widgets/:id', function(req, res){
-      console.log('\n2 config/routes.js - delete /api/widget/destroy req.params:\n', req.params);
+      // console.log('\n2 config/routes.js - delete /api/widget/destroy req.params:\n', req.params);
       WidgetsController.destroy(req, res, function(result){
-        console.log('\n5 config/routes.js - delete /api/widgets/destroy callback() - result\n', result.result);
+        // console.log('\n5 config/routes.js - delete /api/widgets/destroy callback() - result\n', result.result);
         res.json(result);
       });
     });

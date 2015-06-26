@@ -45,7 +45,7 @@
     });
 
     it('should call `widgetFactory.deleteWidget()` when `$scope.destroyWidget()` is called.', function(){
-      console.log('$scope', $scope);
+      // console.log('$scope', $scope);
       $scope.destroyWidget(mockDestroyWidget);
 
       expect(mockWidgetFactory.deleteWidget).toHaveBeenCalledWith(mockDestroyWidget);

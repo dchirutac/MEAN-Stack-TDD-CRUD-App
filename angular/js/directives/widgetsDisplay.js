@@ -36,7 +36,7 @@
         // Get all widgets, set $scope when promise is resolved.
         widgetFactory.getWidgets()
           .then(function(data){
-            console.log('1 widgetsDisplayCtrl - get all widgets:', data);
+            // console.log('1 widgetsDisplayCtrl - get all widgets:', data);
             $scope.widgets = data;
         }, function(error){
           console.log('Get all widgets FAILURE:', error);
@@ -45,11 +45,11 @@
         // Add create new widget method to $scope, push new widget to $scope when promise is resolved
         $scope.createWidget = function(){
           $scope.errors = [];
-          console.log('\n0 widgetCreateFormCtrl - createWidget() $scope.widget', $scope.widget);
+          // console.log('\n0 widgetCreateFormCtrl - createWidget() $scope.widget', $scope.widget);
 
           widgetFactory.createWidget($scope.widget)
             .then(function(widget){
-              console.log('10 controller, widgetsCtrl, createWidget() success callback widget', widget);
+              // console.log('10 controller, widgetsCtrl, createWidget() success callback widget', widget);
               $scope.widget = {};
               $scope.widgets.push(widget);
             }, function(errors){
@@ -60,7 +60,7 @@
 
         // Add show widget method to $scope.
         $scope.showWidget = function(widget){
-          console.log('\n0 widgetsDisplayCtrl - showWidget() widget:', widget);
+          // console.log('\n0 widgetsDisplayCtrl - showWidget() widget:', widget);
           $window.location = '#/widget/' + widget._id;
         };
     }]);

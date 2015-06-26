@@ -2,6 +2,8 @@
 Mongo Express Angular Node - TDD - with Karma, Protractor, & Jasmine
 
 ###Install:
+  `git clone https://github.com/Paz23/MEAN-Stack-TDD-CRUD-App.git`
+  
   `npm install`
 
 ###Start server: 

@@ -1,0 +1,23 @@
+<div id="widget-form" class="template-wrapper">
+  <!-- Have to have one `root` element when using templateUrl w/replace `true` -->
+  <div ng-if="errors.length > 0" class="row">
+    <div class="col-md-12 bg-danger">
+      <div ng-bind="errors"></div>
+    </div>
+  </div>
+
+  <form>
+    <div class="form-group">
+      <label for="name">Widget Name:</label>
+      <input type="text" class="form-control" id="name" ng-model="widget.name" />
+    </div>
+
+    <div class="form-group" ng-if="newRecord">
+      <button type="submit" class="btn btn-default create" ng-click="createWidget()">Create Widget</button>
+    </div>
+    <div class="form-group" ng-if="!newRecord">
+      <button type="submit" class="btn btn-success update" ng-click="updateWidget()">Update Widget</button>
+      <a ng-href="#/widget/{{widget._id}}" class="btn btn-default cancel">Cancel</a>
+    </div>
+  </form>
+</div>

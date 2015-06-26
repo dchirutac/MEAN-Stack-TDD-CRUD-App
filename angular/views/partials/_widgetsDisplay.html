@@ -1,0 +1,54 @@
+<div class="template-wrapper">
+  <!-- Have to have one `root` element when using templateUrl w/replace `true` -->
+  <div id="widget-form" class="row">
+    <div id="errors" class="col-md-4 col-md-offset-3">
+      <div ng-if="errors.length > 0" class="row">
+        <div class="col-md-12 bg-danger">
+          <div ng-bind="errors"></div>
+        </div>
+      </div>
+
+      <h3 id="form-title">Add a Widget</h3>
+      <form>
+        <div class="form-group">
+          <label for="name">Widget Name:</label>
+          <input type="text" class="form-control" id="name" ng-model="widget.name" />
+        </div>
+
+        <div class="form-group" ng-if="newRecord">
+          <button type="submit" class="btn btn-default" ng-click="createWidget()">Create Widget</button>
+        </div>
+        <div class="form-group" ng-if="!newRecord">
+          <button type="submit" class="btn btn-success" ng-click="updateWidget()">Update Widget</button>
+          <a ng-href="#/widget/{{widget._id}}" class="btn btn-default">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-md-offset-5">
+      <input type="text" class="form-control" placeholder="search..." ng-model="filter_name" />
+    </div>
+  </div>
+
+  <div id="widgets-display" class="row">
+    <div class="col-md-6 col-md-offset-2">
+      <h3 id="widgets-title">Widgets Available</h3>
+      <table id="widgets-display-table" class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="widget in widgets | filter: filter_name">
+            <td><a ng-href="" ng-bind="widget.name" ng-click="showWidget(widget)" class="btn btn-primary widget-name"></a></td>
+            <td ng-bind="widget.created_at | date" class="widget-created_at"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

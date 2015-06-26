@@ -1,0 +1,33 @@
+<div class="template-wrapper">
+  <!-- Have to have one `root` element when using templateUrl w/replace `true` -->
+  <div class="row">
+    <div class="col-md-4 col-md-offset-6">
+      <a ng-href="#/" class="btn btn-default goToMain">All Widgets</a>
+    </div>
+  </div>
+
+  <div id='widget-display' class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3 id="widget-title">Widget</h3>
+      <table id="widget-display-table" class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td ng-bind="show_widget.name" class="widget-name"></td>
+            <td ng-bind="show_widget.created_at | date" class="widget-created_at"></td>
+            <td>
+              <button class="btn btn-primary edit" ng-click="editWidget(show_widget)">Edit</button>
+              <button class="btn btn-danger remove" ng-click="destroyWidget(show_widget)">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
   'use strict';
 
   /* App Module */
-  var widgetApp = angular.module('widgetApp', [
+  angular.module('widgetApp', [
     'ngResource',
     'ngRoute',
     'ui.bootstrap',
@@ -10,11 +10,10 @@
     'widgetShowDirective',
     'widgetsDisplayDirective',
     'widgetFactories'
-  ]);
-
-  // Use the config method to setup angular routing, inject $routeProvider
-  // to allow the update of a partial view
-  widgetApp.config(function($routeProvider){
+  ])
+  .config(function($routeProvider){
+    // Use the config method to setup angular routing, inject $routeProvider
+    // to allow the update of a partial view
     $routeProvider
       .when('/',
       {

@@ -1,13 +1,13 @@
 # MEAN-Stack-TDD-CRUD-App
 Mongo Express Angular Node - TDD - with Karma, Protractor, & Jasmine
 
-###Install:
 ######Requirements:
   - [Node](https://nodejs.org/)
   - [MongoDB](https://www.mongodb.org/)
   - [Bower](http://bower.io/)
 - - -
-
+###Install:
+- - -
   `git clone https://github.com/Paz23/MEAN-Stack-TDD-CRUD-App.git`
 
   `npm install`

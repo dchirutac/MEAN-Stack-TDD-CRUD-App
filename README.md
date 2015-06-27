@@ -3,7 +3,9 @@ Mongo Express Angular Node - TDD - with Karma, Protractor, & Jasmine
 
 ###Install:
 ######Requirements:
-  Node, Bower
+  - [Node](https://nodejs.org/)
+  - [MongoDB](https://www.mongodb.org/)
+  - [Bower](http://bower.io/)
 - - -
 
   `git clone https://github.com/Paz23/MEAN-Stack-TDD-CRUD-App.git`
@@ -16,12 +18,12 @@ Mongo Express Angular Node - TDD - with Karma, Protractor, & Jasmine
 - - -
 ####Testing
 #####Karma:
-  `npm test`
+  - `npm test`
 
 #####Protractor:
-  `npm run protractor`
+  - `npm run protractor`
   or
-  `protractor test/protractor-conf.js`
+  - `protractor test/protractor-conf.js`
 
 ######Note:
   To not error with Protractor add one widget prior to running.

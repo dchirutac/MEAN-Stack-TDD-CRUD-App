@@ -63,5 +63,6 @@
           // console.log('\n0 widgetsDisplayCtrl - showWidget() widget:', widget);
           $window.location = '#/widget/' + widget._id;
         };
-    }]);
+      }
+    ]);
 })();

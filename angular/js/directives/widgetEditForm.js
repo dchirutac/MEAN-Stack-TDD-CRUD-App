@@ -14,12 +14,12 @@
       };
     })
     .controller('widgetEditCtrl', ['$location', '$routeParams', '$scope',
-                '$window', 'widgetFactory',
-      function($location, $routeParams, $scope, $window, widgetFactory){
+                '$window', 'WidgetFactory',
+      function($location, $routeParams, $scope, $window, WidgetFactory){
 
         // Get edit widget, set $scope when promise is resolved
         function findOne(params_id){
-          widgetFactory.findOneWidget(params_id)
+          WidgetFactory.findOneWidget(params_id)
             .then(function(widget){
               // console.log('7 widgetEditCtrl, findOneWidget() success callback widget', widget);
               $scope.widget = widget;
@@ -37,7 +37,7 @@
           $scope.errors = [];
           // console.log('\n0 updateWidgetCtrl - updateWidget() $scope.widget', $scope.widget);
 
-          widgetFactory.updateWidget($scope.widget)
+          WidgetFactory.updateWidget($scope.widget)
             .then(function(widget){
               // console.log('8 updateWidgetCtrl, updateWidget() success callback', widget);
               $window.location.href = '/';

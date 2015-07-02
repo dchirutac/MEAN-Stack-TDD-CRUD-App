@@ -24,7 +24,7 @@
 
       beforeEach(function(){
         // Isolate the controller from the factory with spy object.
-        mockWidgetFactory = jasmine.createSpyObj('widgetFactory',['getWidgets']);
+        mockWidgetFactory = jasmine.createSpyObj('WidgetFactory',['getWidgets']);
 
         // Use $q.when() to create a resolved promise to simulate return from factory.
         mockWidgetFactory.getWidgets.and.returnValue($q.when(mockGetWidgetsResponse));
@@ -32,7 +32,7 @@
         // Create controller, injecting any dependencies.
         ctrl = $controller('widgetsDisplayCtrl', {
           $scope: $scope,
-          widgetFactory: mockWidgetFactory
+          WidgetFactory: mockWidgetFactory
         });
         // Call $scope.$apply that will result in a .$digest() to simulate scope life cycle.
         $scope.$apply();
@@ -56,7 +56,7 @@
         $q = _$q_;
         $scope = $rootScope.$new();
 
-        mockWidgetFactory = jasmine.createSpyObj('widgetFactory',['createWidget', 'getWidgets']);
+        mockWidgetFactory = jasmine.createSpyObj('WidgetFactory',['createWidget', 'getWidgets']);
 
         // Use $q.when() to create a resolved promise to simulate return from factory.
         // mockWidgetFactory.createWidget.and.returnValue(mockNewWidget);
@@ -66,7 +66,7 @@
         // Create controller, injecting any dependencies.
         ctrl = $controller('widgetsDisplayCtrl', {
           $scope: $scope,
-          widgetFactory: mockWidgetFactory
+          WidgetFactory: mockWidgetFactory
         });
         $scope.widget = mockNewWidget;
         // Call $scope.$apply that will result in a .$digest() to simulate scope life cycle.

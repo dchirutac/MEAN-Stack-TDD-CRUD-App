@@ -25,7 +25,7 @@
         $q = _$q_;
         $scope = $rootScope.$new();
 
-        mockWidgetFactory = jasmine.createSpyObj('widgetFactory',['findOneWidget', 'getWidgets', 'updateWidget']);
+        mockWidgetFactory = jasmine.createSpyObj('WidgetFactory',['findOneWidget', 'getWidgets', 'updateWidget']);
 
         // Use $q.when() to create a resolved promise to simulate return from factory.
         mockWidgetFactory.findOneWidget.and.returnValue($q.when(mockWidget));
@@ -35,7 +35,7 @@
         // Create controller, injecting any dependencies.
         ctrl = $controller('widgetEditCtrl', {
           $scope: $scope,
-          widgetFactory: mockWidgetFactory,
+          WidgetFactory: mockWidgetFactory,
           $window: mockWindow
         });
 

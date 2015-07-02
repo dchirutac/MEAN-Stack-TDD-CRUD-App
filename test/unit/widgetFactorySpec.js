@@ -3,12 +3,12 @@
 
   /* Jasmine specs for services go here */
 
-  describe('Factory: widgetFactory', function() {
+  describe('Factory: WidgetFactory', function() {
     // console.log('\n.....Starting WidgetApp widgetsFactory Karma Test.....\n');
-    var $httpBackend, $q, deferred, mockErr, mockInvalidWidget, mockDeleteWidget;
+    var $httpBackend, $q, deferred, mockInvalidWidget, mockDeleteWidget;
     var mockDestroyWidgetResponse, mockEditWidget, mockFindOneWidget;
     var mockGetWidgetsResponse, mockNewWidget, mockNewWidgetResponse;
-    var rejectReason, result, widgets, widgetFactory;
+    var result, widgets, WidgetFactory;
 
     // Create testing objects
     mockInvalidWidget = {name: ''};
@@ -19,18 +19,17 @@
     mockGetWidgetsResponse = [{name: 'Factory Testing Widget', created_at: '1999-12-31'}];
     mockNewWidget = [{name: 'Mock new widget'}];
     mockNewWidgetResponse = {data: {name: 'Mock new widget'}, status: 200};
-    mockErr = {errors: 'Name Required!'};
 
     beforeEach(function(){
       // Load main module
       module('widgetApp');
 
-      // Inject widgetFactory for testing.
+      // Inject WidgetFactory for testing.
         // Underscore wrap name to use same name in testing.
-      inject(function(_$httpBackend_, _$q_, _widgetFactory_){
+      inject(function(_$httpBackend_, _$q_, _WidgetFactory_){
         $httpBackend = _$httpBackend_;
         $q = _$q_;
-        widgetFactory = _widgetFactory_;
+        WidgetFactory = _WidgetFactory_;
         deferred = $q.defer();
       });
     });
@@ -44,7 +43,7 @@
     describe('.getWidgets()', function(){
       // Check existence of factory function.
       it('function should be defined.', function(){
-        expect(angular.isFunction(widgetFactory.getWidgets)).toBe(true);
+        expect(angular.isFunction(WidgetFactory.getWidgets)).toBe(true);
       });
 
       it('should resolve GET request with mocked reponse.', function(){
@@ -52,7 +51,7 @@
         $httpBackend.when('GET', '/api/widgets').respond(mockGetWidgetsResponse);
 
         // Chain .then() to resolve returned $http promise
-        widgetFactory.getWidgets()
+        WidgetFactory.getWidgets()
           .then(function(data){
             widgets = data;
             // console.log('.then widgets', widgets);
@@ -65,77 +64,76 @@
       });
 
       it('should reject GET request and respond with error.', function(){
-        rejectReason = 'Mock Error!';
-        $httpBackend.when('GET', '/api/widgets').respond(500, rejectReason);
+        $httpBackend.when('GET', '/api/widgets').respond(500);
 
-        widgetFactory.getWidgets()
+        WidgetFactory.getWidgets()
           .then(function(data){
             widgets = data;
-          }, function(reason){
-            result = reason;
+          }, function(error){
+            result = error;
           });
 
         $httpBackend.flush();
         // console.log('reject .get result', result);
 
-        expect(result).toEqual(rejectReason);
+        expect(result).not.toBeNull();
       });
     });
 
     describe('.createWidget()', function(){
       it('function should be defined.', function(){
-        expect(angular.isFunction(widgetFactory.createWidget)).toBe(true);
+        expect(angular.isFunction(WidgetFactory.createWidget)).toBe(true);
       });
 
       it('should create new widget when valid input is used.', function(){
-        spyOn(widgetFactory, 'createWidget').and.callThrough();
+        spyOn(WidgetFactory, 'createWidget').and.callThrough();
 
         $httpBackend.when('POST', '/api/widgets').respond(201, mockNewWidget);
 
         // Getting a promise from the $http request, using .then to verify success.
-        widgetFactory.createWidget(mockNewWidget)
+        WidgetFactory.createWidget(mockNewWidget)
           .then(function(data){
             expect(data).toEqual(mockNewWidget);
           });
 
         $httpBackend.flush();
 
-        expect(widgetFactory.createWidget).toHaveBeenCalledWith(mockNewWidget);
+        expect(WidgetFactory.createWidget).toHaveBeenCalledWith(mockNewWidget);
       });
 
       it('should NOT create new widget when invalid input is used.', function(){
-        spyOn(widgetFactory, 'createWidget').and.callThrough();
+        spyOn(WidgetFactory, 'createWidget').and.callThrough();
 
-        $httpBackend.when('POST', '/api/widgets').respond(300, mockErr);
+        $httpBackend.when('POST', '/api/widgets').respond(300);
 
         // Getting a promise from the $http request, using .then to verify failure.
-        widgetFactory.createWidget(mockInvalidWidget)
+        WidgetFactory.createWidget(mockInvalidWidget)
           .then(function(data){
             console.log('data', data);
             // If it makes it here there was a problem.
             expect(true).toBe(false);
-          }, function(errors){
+          }, function(error){
             // console.log('errors', errors);
-            expect(errors).toBe(mockErr.errors);
+            expect(error).not.toBeNull();
           });
 
         $httpBackend.flush();
 
-        expect(widgetFactory.createWidget).toHaveBeenCalledWith(mockInvalidWidget);
+        expect(WidgetFactory.createWidget).toHaveBeenCalledWith(mockInvalidWidget);
       });
     });
 
     describe('.findOneWidget()', function(){
       it('function should be defined.', function(){
-        expect(angular.isFunction(widgetFactory.findOneWidget)).toBe(true);
+        expect(angular.isFunction(WidgetFactory.findOneWidget)).toBe(true);
       });
 
       it('should return a widget.', function(){
-        spyOn(widgetFactory, 'findOneWidget').and.callThrough();
+        spyOn(WidgetFactory, 'findOneWidget').and.callThrough();
 
         $httpBackend.when('GET', '/api/widgets/1').respond(201, mockFindOneWidget);
 
-        widgetFactory.findOneWidget(mockFindOneWidget)
+        WidgetFactory.findOneWidget(mockFindOneWidget)
           .then(function(data){
             // console.log('data', data);
             expect(data).toEqual(mockFindOneWidget);
@@ -147,15 +145,15 @@
 
     describe('.updateWidget()', function(){
       it('function should be defined.', function(){
-        expect(angular.isFunction(widgetFactory.updateWidget)).toBe(true);
+        expect(angular.isFunction(WidgetFactory.updateWidget)).toBe(true);
       });
 
       it('should update a widget when valid input is entered.', function(){
-        spyOn(widgetFactory, 'updateWidget').and.callThrough();
+        spyOn(WidgetFactory, 'updateWidget').and.callThrough();
 
         $httpBackend.when('POST', '/api/widgets/1').respond({data: mockEditWidget, status: 200});
 
-        widgetFactory.updateWidget(mockEditWidget)
+        WidgetFactory.updateWidget(mockEditWidget)
           .then(function(data){
             // console.log('update data......', data);
             expect(data.data.name).toEqual(mockEditWidget.name);
@@ -169,15 +167,15 @@
 
     describe('.deleteWidget()', function(){
       it('function should be defined.', function(){
-        expect(angular.isFunction(widgetFactory.deleteWidget)).toBe(true);
+        expect(angular.isFunction(WidgetFactory.deleteWidget)).toBe(true);
       });
 
       it('should remove the widget.', function(){
-        spyOn(widgetFactory, 'deleteWidget').and.callThrough();
+        spyOn(WidgetFactory, 'deleteWidget').and.callThrough();
 
         $httpBackend.when('DELETE', '/api/widgets/1').respond(mockDestroyWidgetResponse);
 
-        widgetFactory.deleteWidget(mockDeleteWidget);
+        WidgetFactory.deleteWidget(mockDeleteWidget);
 
         $httpBackend.flush();
       });

@@ -26,15 +26,15 @@
       // directive.templateUrl = 'partials/_widgetsDisplay.html';
       // return directive;
     })
-    .controller('widgetsDisplayCtrl', ['$scope','$window', 'widgetFactory',
-      function($scope, $window, widgetFactory){
+    .controller('widgetsDisplayCtrl', ['$scope','$window', 'WidgetFactory',
+      function($scope, $window, WidgetFactory){
         $scope.errors = [];
         $scope.newRecord = true;
         $scope.widget = {};
         $scope.widgets = [];
 
         // Get all widgets, set $scope when promise is resolved.
-        widgetFactory.getWidgets()
+        WidgetFactory.getWidgets()
           .then(function(data){
             // console.log('1 widgetsDisplayCtrl - get all widgets:', data);
             $scope.widgets = data;
@@ -47,7 +47,7 @@
           $scope.errors = [];
           // console.log('\n0 widgetCreateFormCtrl - createWidget() $scope.widget', $scope.widget);
 
-          widgetFactory.createWidget($scope.widget)
+          WidgetFactory.createWidget($scope.widget)
             .then(function(widget){
               // console.log('10 controller, widgetsCtrl, createWidget() success callback widget', widget);
               $scope.widget = {};

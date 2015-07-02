@@ -12,13 +12,13 @@
       };
     })
     .controller('widgetShowCtrl', ['$location', '$routeParams', '$scope',
-                '$window', 'widgetFactory',
-      function($location, $routeParams, $scope, $window, widgetFactory){
-        // console.log('\n0 showWidgetCtrl, call widgetFactory.findOneWidget()');
+                '$window', 'WidgetFactory',
+      function($location, $routeParams, $scope, $window, WidgetFactory){
+        // console.log('\n0 showWidgetCtrl, call WidgetFactory.findOneWidget()');
         $scope.widget = {};
 
         // Find show widget & set $scope when promise is resolved
-        widgetFactory.findOneWidget({_id: $routeParams.id})
+        WidgetFactory.findOneWidget({_id: $routeParams.id})
           .then(function(widget){
             // console.log('7 showWidgetCtrl, findOneWidget() success callback widget', widget);
             $scope.show_widget = widget;
@@ -36,7 +36,7 @@
         // // Add remove widget to $scope, remove widget from $scope when promise is resolved
         $scope.destroyWidget = function(widget){
           // console.log('\n0 showWidgetCtrl - destroyWidget() widget:', widget);
-          widgetFactory.deleteWidget({_id: widget._id})
+          WidgetFactory.deleteWidget({_id: widget._id})
             .then(function(data){
               // console.log('7 showWidgetCtrl - destroyWidget() success callback', data);
               $window.location.href = '/';

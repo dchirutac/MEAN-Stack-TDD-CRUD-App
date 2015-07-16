@@ -3,7 +3,7 @@
 
   /* Jasmine specs for controllers */
   describe('Controller: widgetShowCtrl', function() {
-    var $controller, $q, $scope;
+    var $controller, $q, $scope, $window;
     var ctrl, mockDestroyWidget, mockDestroyWidgetResponse;
     var mockFindOneWidgetResponse, mockWidgetFactory;
 
@@ -14,10 +14,11 @@
     mockFindOneWidgetResponse = {_id: '1', name: 'Mock Edit Widget', created_at: '1999,12-31'};
     mockDestroyWidgetResponse = {ok: 1, n: 1};
 
-    beforeEach(inject(function(_$controller_, _$q_, $rootScope){
+    beforeEach(inject(function(_$controller_, _$q_, $rootScope, _$window_){
       $controller = _$controller_;
       $q = _$q_;
       $scope = $rootScope.$new();
+      $window = _$window_;
     }));
 
     beforeEach(function(){
@@ -42,6 +43,11 @@
     it('should create `show_widget` model.', function(){
       expect(mockWidgetFactory.findOneWidget).toHaveBeenCalled();
       expect($scope.show_widget).toEqual(mockFindOneWidgetResponse);
+    });
+    it('should call `$scope.editWidget` and load edit page.', function(){
+      $scope.editWidget(mockFindOneWidgetResponse);
+
+      expect($window.location.href).toContain('/widget/' + mockFindOneWidgetResponse._id + '/edit');
     });
 
     it('should call `WidgetFactory.deleteWidget()` when `$scope.destroyWidget()` is called.', function(){

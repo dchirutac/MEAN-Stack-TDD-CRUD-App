@@ -2,7 +2,6 @@
   'use strict';
 
   /* Jasmine specs for services go here */
-
   describe('Factory: WidgetFactory', function() {
     // console.log('\n.....Starting WidgetApp widgetsFactory Karma Test.....\n');
     var $httpBackend, $q, deferred, mockInvalidWidget, mockDeleteWidget;
